@@ -1,5 +1,5 @@
 set(DEX_PROJECT_NAME "syldex-desktop")
-set(DEX_DISPLAY_NAME "Syl Desktop")
+set(DEX_DISPLAY_NAME "SylDesktop")
 set(DEX_COMPANY "SylSoft")
 set(DEX_WEBSITE "https://github.com/SylEze/sylDEX-Desktop")
 

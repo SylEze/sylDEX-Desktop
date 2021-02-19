@@ -1,7 +1,7 @@
-set(DEX_PROJECT_NAME "atomicdex-desktop")
-set(DEX_DISPLAY_NAME "AtomicDEX Desktop")
-set(DEX_COMPANY "KomodoPlatform")
-set(DEX_WEBSITE "https://atomicdex.io/")
+set(DEX_PROJECT_NAME "syldex-desktop")
+set(DEX_DISPLAY_NAME "Syl Desktop")
+set(DEX_COMPANY "SylSoft")
+set(DEX_WEBSITE "https://github.com/SylEze/sylDEX-Desktop")
 
 # Do not touch!
 set(DEX_TARGET_DIR "@ApplicationsDir@/${DEX_DISPLAY_NAME}")

@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
+# Loads CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(project.metadata)
 include(build_type)
@@ -339,7 +340,7 @@ if (LINUX)
             "atomicdex-desktop.desktop"
             "atomicdex-desktop.appdata.xml"
             "atomicdex-desktop-64.png"
-            atomicdex-desktop
+            ${PROJECT_NAME}
             AntaraAtomicDexAppDir
             ${CMAKE_CURRENT_SOURCE_DIR}/assets
             )
@@ -348,7 +349,7 @@ if (LINUX)
             "atomicdex-desktop.desktop"
             "atomicdex-desktop.appdata.xml"
             "atomicdex-desktop-64.png"
-            atomicdex-desktop_tests
+            ${PROJECT_NAME}_tests
             AntaraAtomicDexTestsAppDir
             ${CMAKE_CURRENT_SOURCE_DIR}/assets
             )
@@ -362,7 +363,7 @@ if (LINUX)
     configure_file(${from_dir}/${appdata_file} ${output_dir_at}/usr/share/metainfo/${appdata_file} COPYONLY)
     configure_file(${from_dir}/${app_icon} ${output_dir_at}/usr/share/icons/hicolor/64x64/apps/${app_icon} COPYONLY)
     configure_file(${from_dir}/${app_icon} ${output_dir_at}/usr/share/icons/default/64x64/apps/${app_icon} COPYONLY)
-    include(data/linux/atomicdex_install.cmake)
+    include(data/linux/dex_install.cmake)
 endif ()
 
 if (WIN32)
@@ -396,13 +397,13 @@ if (WIN32)
             POST_BUILD
             COMMAND ${WINDEPLOYQT_PATH} ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}.exe ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}_shared_deps.dll --qmldir ${CMAKE_SOURCE_DIR}/atomic_defi_design/qml
             )
-    include(data/windows/atomicdex_install.cmake)
+    include(data/windows/dex_install.cmake)
 endif ()
 
 if (APPLE)
     file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}.app/Contents/Resources)
     file(COPY assets DESTINATION ${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}_tests.app/Contents/Resources)
-    include(data/osx/atomicdex_install.cmake)
+    include(data/osx/dex_install.cmake)
 endif ()
 
 if (WITH_HOTRELOAD)

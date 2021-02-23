@@ -6,8 +6,8 @@ on:
     - temporary_disabled
 
 env:
-  DEX_PROJECT_NAME: "atomicdex-desktop"
-  DEX_DISPLAY_NAME: "AtomicDex Desktop"
+  DEX_PROJECT_NAME: "syldex-desktop"
+  DEX_DISPLAY_NAME: "SylDex Desktop"
   DEX_COMPANY: "KomodoPlatform"
   DEX_WEBSITE: "https://atomicdex.io/"
 

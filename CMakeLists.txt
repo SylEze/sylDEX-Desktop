@@ -44,13 +44,13 @@ endif ()
 ##! We fetch our dependencies
 if (APPLE)
     FetchContent_Declare(mm2
-            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3054/mm2-e423b0532-Darwin-Release.zip)
+            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3110/mm2-bf975cafe-Darwin-Release.zip)
 elseif (UNIX AND NOT APPLE)
     FetchContent_Declare(mm2
-            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3054/mm2-e423b0532-Linux-Release.zip)
+            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3110/mm2-bf975cafe-Linux-Release.zip)
 else ()
     FetchContent_Declare(mm2
-            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3054/mm2-e423b0532-Windows_NT-Release.zip)
+            URL https://github.com/KomodoPlatform/atomicDEX-API/releases/download/beta-2.1.3110/mm2-bf975cafe-Windows_NT-Release.zip)
 endif ()
 
 FetchContent_Declare(qmaterial URL https://github.com/KomodoPlatform/Qaterial/archive/master.zip)
@@ -81,7 +81,7 @@ add_subdirectory(vendor/antara-gaming_sdk/modules)
 
 ##! Osx bundle icon
 set(ICON)
-configure_icon_osx(data/osx/atomicdex-desktop.icns ICON atomicdex-desktop.icns)
+configure_icon_osx(data/osx/dex-logo.icns ICON dex-logo.icns)
 ##! End antara
 
 set(CMAKE_AUTOUIC ON)
@@ -151,6 +151,9 @@ target_sources(${PROJECT_NAME}_shared_deps PRIVATE
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/rpc.enable.cpp
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/rpc.electrum.cpp
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/rpc.balance.cpp
+        ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/rpc.buy.cpp
+        ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/rpc.sell.cpp
+        ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/trading.order.contents.cpp
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/generics.cpp
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/mm2/fraction.cpp
         ${CMAKE_SOURCE_DIR}/src/atomicdex/api/coinpaprika/coinpaprika.cpp
@@ -262,7 +265,7 @@ target_include_directories(${PROJECT_NAME}_shared_deps
 
 ##! Main executable
 add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${ICON}
-        ${CMAKE_CURRENT_SOURCE_DIR}/data/windows/atomicdex-desktop.rc
+        ${CMAKE_CURRENT_SOURCE_DIR}/data/windows/dex.rc
         main.cpp
         ##! QRC
         ${CMAKE_SOURCE_DIR}/qml.qrc
@@ -339,27 +342,27 @@ if (LINUX)
     set(output_dir_at "${exe_runtime_directory_at}/AntaraAtomicDexAppDir")
 
     magic_game_app_image_generation("${CMAKE_CURRENT_SOURCE_DIR}/data/linux"
-            "atomicdex-desktop.desktop"
-            "atomicdex-desktop.appdata.xml"
-            "atomicdex-desktop-64.png"
+            "dex.desktop"
+            "dex.appdata.xml"
+            "dex-logo-64.png"
             ${PROJECT_NAME}
             AntaraAtomicDexAppDir
             ${CMAKE_CURRENT_SOURCE_DIR}/assets
             )
 
     magic_game_app_image_generation("${CMAKE_CURRENT_SOURCE_DIR}/data/linux"
-            "atomicdex-desktop.desktop"
-            "atomicdex-desktop.appdata.xml"
-            "atomicdex-desktop-64.png"
+            "dex.desktop"
+            "dex.appdata.xml"
+            "dex-logo-64.png"
             ${PROJECT_NAME}_tests
             AntaraAtomicDexTestsAppDir
             ${CMAKE_CURRENT_SOURCE_DIR}/assets
             )
 
     set(from_dir "${CMAKE_CURRENT_SOURCE_DIR}/data/linux")
-    set(desktop_file "atomicdex-desktop.desktop")
-    set(appdata_file "atomicdex-desktop.appdata.xml")
-    set(app_icon "atomicdex-desktop-64.png")
+    set(desktop_file "dex.desktop")
+    set(appdata_file "dex.appdata.xml")
+    set(app_icon "dex-logo-64.png")
     message(STATUS "${output_dir_at}")
     configure_file(${from_dir}/${desktop_file} ${output_dir_at}/usr/share/applications/${desktop_file} COPYONLY)
     configure_file(${from_dir}/${appdata_file} ${output_dir_at}/usr/share/metainfo/${appdata_file} COPYONLY)
